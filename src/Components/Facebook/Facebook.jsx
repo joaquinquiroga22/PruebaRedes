@@ -3,23 +3,39 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export default function Facebook() {
-    const  [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`https://graph.facebook.com/search?q=auto&type=POST&access_token=EAASZCmmPIGgABAP7TgD8ZCWxHckuzujnzYZCfDltCBZCWVZBSjxtTfLX5XPlZBEHSCyBupAcPGxmQIodqpZAXWImAy1EZCPxNS4bD7N8mtmXTAKHZAmMAUteDRoL00oRJfau9HgF8M4sj53yj4IOOLqq9PPHoBZAx3znEpSGlL2BZAl73wzdNnlFXkZCyL6vShPQEiKgLiya7lIHu2uBA0GInvzA`)
-         .then((res) => res.json())
-         .then((data) =>{
-             
-              setData(data)
-              console.log(data);
-         })
-        },[]);
-console.log(data)
-        return (
-            <div>
-                 {/* <img src={data.picture.data.url} alt="img" />  */}
-                <h1>hola</h1>
-            </div>
-        )
- }
+        fetch(`https://gnews.io/api/v4/search?q="FMI"&lang=es&token=0eefc7f21b5ae2d950fd10dc040c6bcb`)
+            .then((res) => res.json())
+            .then((data) => {
+
+                setData(data)
+
+            })
+    }, []);
+    console.log(data)
+    return (
+        <div style={{ height: '500px', width: '100%', border: '1px solid black' }}>
+
+            {data.articles && data.articles.map((item) => (    
+<div>
+                      
+    
+                            
+                          <p>{console.log(item.content)}</p>
+                          <img src={item.image}></img>
+
+                        </div>
+            ))}
+        </div>
+    )
+
+
+
+
+
+    // <h1> {data.articles[0].image} </h1>
+
+}
 
